@@ -8,7 +8,7 @@ CREATE TABLE Person (
     PersonId INTEGER IDENTITY (1,1),
     FirstName VARCHAR (100) NOT NULL,
     LastName VARCHAR (100) NOT NULL,
-    Birthday DATE NOT NULL,
+    Phone INTEGER (50),
     Email VARCHAR (100) NOT NULL,
 
     CONSTRAINT PK_Person_PersonId PRIMARY KEY(PersonId),
