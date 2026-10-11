@@ -34,14 +34,14 @@
 
 		<!-- Platform-specific settings for macOS -->
 		<PropertyGroup Condition="'$(OS)' == 'Unix'">
-		<TargetFramework>net9.0-maccatalyst</TargetFramework>
+		<TargetFramework>net10.0-maccatalyst</TargetFramework>
 		<SupportedOSPlatformVersion>13.1</SupportedOSPlatformVersion>
 
 	</PropertyGroup>
 
 	<!-- Platform-specific settings for Windows -->
 	<PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
-		<TargetFramework>net9.0-windows10.0.19041.0</TargetFramework>
+		<TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
 		<SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
 		<!-- Packaging setting - do not require MSIX install -->
@@ -51,13 +51,13 @@
 	</PropertyGroup>
 
 	<!-- Choose the default framework for the 'dotnet run' command based on OS -->
-	<PropertyGroup Condition=" '$(TargetFrameworks)' == 'net9.0-maccatalyst' ">
-		<RunCommandTargetFramework>net8.0-maccatalyst</RunCommandTargetFramework>
+	<PropertyGroup Condition=" '$(TargetFrameworks)' == 'net10.0-maccatalyst' ">
+		<RunCommandTargetFramework>net10.0-maccatalyst</RunCommandTargetFramework>
 	</PropertyGroup>
 
 	<!-- Choose the default framework for the 'dotnet run' command based on OS -->
-	<PropertyGroup Condition=" '$(TargetFrameworks)' == 'net9.0-windows10.0.19041.0' ">
-		<RunCommandTargetFramework>net9.0-windows10.0.19041.0</RunCommandTargetFramework>
+	<PropertyGroup Condition=" '$(TargetFrameworks)' == 'net10.0-windows10.0.19041.0' ">
+		<RunCommandTargetFramework>net10.0-windows10.0.19041.0</RunCommandTargetFramework>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -79,6 +79,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.12" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
 	</ItemGroup>
