@@ -24,10 +24,11 @@ public class Person
     [MaxLength(100)]
     public required string LastName { get; set;}
 
+    [Required]
     [Column("Phone")]
     [MaxLength(50)]
     
-    public int Phone { get; set;}
+    public required string Phone { get; set;}
 
     [Required]
     [Column("Email")]

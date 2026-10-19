@@ -8,7 +8,7 @@ CREATE TABLE Person (
     PersonId INTEGER IDENTITY (1,1),
     FirstName VARCHAR (100) NOT NULL,
     LastName VARCHAR (100) NOT NULL,
-    Phone INTEGER (50),
+    Phone VARCHAR (50) NOT NULL,
     Email VARCHAR (100) NOT NULL,
 
     CONSTRAINT PK_Person_PersonId PRIMARY KEY(PersonId),
@@ -18,6 +18,7 @@ CREATE TABLE Person (
 
 CREATE TABLE Event (
     EventId INTEGER IDENTITY (1,1),
+    EventName VARCHAR (100) NOT NULL,
     EventTime DATETIME2 NOT NULL,
     EventPlace VARCHAR (100) NOT NULL,
 
@@ -26,8 +27,8 @@ CREATE TABLE Event (
 
 CREATE TABLE Coordinator (
     CoordinatorId INTEGER IDENTITY (1,1),
-    PersonId INTEGER,
-    EventId INTEGER,
+    PersonId INTEGER NOT NULL,
+    EventId INTEGER NOT NULL,
 
     CONSTRAINT PK_Coordinator_CoordinatorId PRIMARY KEY(CoordinatorId),
     CONSTRAINT FK_Coordinator_Person_PersonId FOREIGN KEY(PersonId)
@@ -39,8 +40,10 @@ CREATE TABLE Coordinator (
 
 CREATE TABLE Registration (
     RegistrationId INTEGER IDENTITY (1,1),
-    PersonId INTEGER,
-    EventId INTEGER,
+    PersonId INTEGER NOT NULL,
+    EventId INTEGER NOT NULL,
+    IsVegetarian BIT NOT NULL,
+    IsDrinking BIT NOT NULL,
     RegistrationStatus VARCHAR (100)
         CONSTRAINT DF_Registration_RegistrationStatus DEFAULT 'NotCheckedIn',
 
@@ -53,15 +56,4 @@ CREATE TABLE Registration (
     CONSTRAINT CK_Registration_RegistrationStatus
         CHECK (RegistrationStatus IN ('CheckedIn', 'NotCheckedIn', 'Cancelled')),
     CONSTRAINT UQ_Registration_PersonId_EventId UNIQUE(PersonId, EventId)
-
-
-);
-
-CREATE TABLE MealPreference (
-    RegistrationId INTEGER NOT NULL,
-    IsVegetarian BIT NOT NULL,
-    IsDrinking BIT NOT NULL,
-
-    CONSTRAINT FK_MealPreference_Registration_RegistrationId FOREIGN KEY (RegistrationId)
-        REFERENCES Registration(RegistrationId),
 );
